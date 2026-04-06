@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "question": "Tôi có 5 triệu cho 3 ngày, hãy so sánh Hà Nội và Đà Nẵng dựa trên thời tiết hiện tại và chi phí/ngày rồi chốt giúp tôi nơi phù hợp hơn."
+    },
+    {
+        "id": 2,
+        "question": "Nhóm tôi có ngân sách 7.2 triệu cho 4 ngày ở Sài Gòn. Hãy tính ngân sách trung bình mỗi ngày"
+    },
+    {
+        "id": 3,
+        "question": "Tôi phân vân giữa Hà Nội và Sài Gòn cho chuyến đi 2 ngày với ngân sách 3 triệu. Hãy kiểm tra thời tiết 2 nơi và tính ngân sách/ngày để gợi ý nơi an toàn tài chính hơn."
+    },
+    {
+        "id": 4,
+        "question": "Với 10 triệu cho 6 ngày, tôi muốn chọn giữa Đà Nẵng và Hà Nội. Đưa ra khuyến nghị cuối cùng."
+    },
+    {
+        "id": 5,
+        "question": "Tôi cần một câu trả lời có số liệu: Việt Nam có dân số bao nhiêu, và diện tích là bao nhiêu?"
+    }
+]
