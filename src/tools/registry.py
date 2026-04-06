@@ -1,4 +1,4 @@
-from src.tools.calculator import calculate
+from src.tools.calculator import calculator
 from src.tools.search import search_knowledge
 from src.tools.weather import get_weather
 
@@ -7,7 +7,7 @@ TOOLS = [
     {
         "name": "calculate",
         "description": "Tính toán biểu thức toán học. Input: biểu thức dạng string (vd: '2+2', '10*5')",
-        "function": calculate
+        "function": calculator
     },
     {
         "name": "search_knowledge",
