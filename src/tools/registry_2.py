@@ -1,6 +1,6 @@
 from src.tools.calculator import calculator
 from src.tools.search_2 import search_tavily
-from src.tools.weather import get_weather
+from src.tools.weather_2 import get_weather_live
 
 # Registry update: Updated descriptions with clear Input/Output formats
 TOOLS = [
@@ -20,10 +20,10 @@ TOOLS = [
     },
     {
         "name": "get_weather",
-        "description": """Lấy thông tin thời tiết của thành phố.
+        "description": """Lấy thông tin thời tiết thực tế của thành phố từ internet.
             Input: Tên thành phố (string).
-            Output: Thông tin về nhiệt độ, trạng thái thời tiết và các thông số liên quan.""",
-        "function": get_weather
+            Output: Nhiệt độ, trạng thái thời tiết, độ ẩm và tốc độ gió hiện tại.""",
+        "function": get_weather_live
     }
 ]
 
