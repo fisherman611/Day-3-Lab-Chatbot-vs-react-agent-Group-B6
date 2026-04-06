@@ -10,6 +10,7 @@ from dotenv import load_dotenv
 from src.agent.agent import ReActAgent
 from src.tools.registry import TOOLS
 from src.core.openai_provider import OpenAIProvider
+import json
 
 def main():
     # Load environment
@@ -23,15 +24,12 @@ def main():
     # Khởi tạo Agent với max_steps cao hơn cho câu hỏi phức tạp
     agent = ReActAgent(llm=llm, tools=TOOLS, max_steps=8)
     
+    
     # Test cases
-    test_cases = [
-        "Thời tiết Hà Nội hôm nay thế nào?",
-        "Thủ đô của Việt Nam là gì?",
-        
-        # Test cases mới - Tư vấn du lịch
-        "Tôi có 5 triệu đồng, muốn đi du lịch 3 ngày. Nên đi Hà Nội hay Đà Nẵng? Chi phí mỗi ngày khoảng bao nhiêu?",
-        "So sánh thời tiết và chi phí giữa Hà Nội và Sài Gòn",
-    ]
+    with open("testcases/travel_agent_questions.json", "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    test_cases = [sample["question"] for sample in data]
     
     print("="*70)
     print("TESTING REACT AGENT - TRAVEL ADVISOR")
