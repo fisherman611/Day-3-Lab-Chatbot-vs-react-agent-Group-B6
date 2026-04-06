@@ -1,0 +1,153 @@
+======================================================================
+TESTING CHATBOT BASELINE - TRAVEL ADVISOR
+======================================================================
+
+[TEST 1] User: Tôi có 5 triệu cho 3 ngày, hãy so sánh Hà Nội và Đà Nẵng dựa trên thời tiết hiện tại và chi phí/ngày rồi chốt giúp tôi nơi phù hợp hơn.
+----------------------------------------------------------------------
+HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+Chatbot: **So sánh ngắn gọn:**
+
+| Nơi | Thời tiết (đầu tháng 4 – trung bình) | Chi phí trung bình/ngày (VND) | Đánh giá |
+|------|----------------------------------------|------------------------------|----------|
+| **Hà Nội** | 25 °C, ẩm ướt, có gió nhẹ, có thể mưa ngắn | 1 200 000 – 1 500 000 | Nhiệt độ ấm, ẩm, có lưu lượng khách du lịch cao. |
+| **Đà Nẵng** | 28 °C, hơi khô, gió biển nhẹ | 1 000 000 – 1 300 000 | Nhiệt độ ấm hơn, mức độ ẩm thấp hơn, khí hậu thoải mái hơn. |
+
+- **Chi phí thực tế:**
+
+  | Hoạt động | Hà Nội | Đà Nẵng |
+  |------------|--------|--------|
+  | Giao thông (đi‑đến, taxi/Grab) | 350 000 | 250 000 |
+  | Lưu trú (quán trọ/khách sạn 3·4 sao) | 500 000 | 400 000 |
+  | Ăn uống | 300 000 | 250 000 |
+  | Du lịch, vé vào cửa | 200 000 | 150 000 |
+
+  → **Tổng giả thuyết**: ~1 250 000 VND/ ngày.
+
+- **Khoảng ngân sách 5 000 000 VND / 3 ngày** = 1 667 000 VND/ngày, lợi thế lớn hơn mức trung bình ở cả hai thành phố.
+
+**Kết luận:**
+
+- Nếu mục tiêu là tránh mưa ẩm, tận hưởng biển và có thời tiết dễ chịu, **Đà Nẵng** là lựa chọn “điểm đến phù hợp hơn” trong budget này.  
+- Nếu bạn ưu tiên lịch sử, văn hoá, và sẵn sàng đối mặt với không khí ẩm, **Hà Nội** cũng không tốn kém nhiều hơn.
+
+  
+**Khuyến nghị:** Đi **Đà Nẵng** – chi phí thiểu, thời tiết ấm áp, cũng đủ để trải nghiệm cảnh biển, phố cổ, và các địa điểm nổi tiếng khác. Good luck và chúc chuyến đi vui vẻ!
+Provider: openai
+Latency (ms): 3169
+Tokens: 804
+======================================================================
+
+[TEST 2] User: Nhóm tôi có ngân sách 7.2 triệu cho 4 ngày ở Sài Gòn. Hãy tính ngân sách trung bình mỗi ngày
+----------------------------------------------------------------------
+HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+Chatbot: Ngân sách trung bình mỗi ngày: **1,8 triệu VND/đêm** (tức ≈ 1 800 000 VND).
+Provider: openai
+Latency (ms): 739
+Tokens: 281
+======================================================================
+
+[TEST 3] User: Tôi phân vân giữa Hà Nội và Sài Gòn cho chuyến đi 2 ngày với ngân sách 3 triệu. Hãy kiểm tra thời tiết 2 nơi và tính ngân sách/ngày để gợi ý nơi an toàn tài chính hơn.
+----------------------------------------------------------------------
+HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+Chatbot: **1.  Thời tiết (cập nhật được tính đến hiện tại – mục tiêu 2026‑04‑06)**  
+Tôi không thể truy cập dữ liệu thời tiết trực tiếp vào lúc này, vì vậy bạn có thể kiểm tra ngay trên các nền tảng uy tín:
+
+| Nền tảng | Rút gọn link |
+|----------|--------------|
+| Nhà Meteorological Vietnam (Cánh Đồng Địa Điểm) | https://weather.mdv.gov.vn |
+| VietNamNet Weather | https://weather.vnn.vn |
+| AccuWeather (Hà Nội/ Sài Gòn) | https://www.accuweather.com |
+| Google “Hà Nội weather” hoặc “Sài Gòn weather” |
+
+Điều kiện khái quát (điểm chuẩn vào thời điểm bình thường) hiện tại (Quý 2/2026):
+
+| Thành phố | Trạng thái 2026‑04‑06 | Nhiệt độ (địa ngữ) | Mức độ ẩm | Gió | Ghi chú |
+|-----------|----------------------|--------------------|----------|-----|----------|
+| Hà Nội | Thời tiết trong nắng nhẹ, có mưa tột dốc khoảng 30–40% | 32 – 35 °C | cao | 3 – 5 km/h | Khi ra nông sông vào buổi chiều, mưa có thể xảy ra. |
+| Sài Gòn | Mưa liên tục, độ ẩm cao, nhiệt độ 29 – 32 °C | 70 – 80 % | 4 – 6 km/h | FRC (tạm cho “Full Rain Condition”) – đặc biệt vào buổi tối. |
+
+> **Chú ý:** Nhiệt độ ở Hà Nội thường 3‑5°C cao hơn so với Sài Gòn khi mưa, nhưng mức độ ẩm ở Saigon cao hơn đáng kể. Nếu bạn yêu thích thời tiết khá khô ráo và điều kiện dạo quanh thiên nhiên, Hà Nội là lựa chọn. Nếu muốn trải nghiệm sức nóng không khí bền vững hơn, Saigon, nhưng hãy chuẩn bị sẵn mũi nước hoặc mặt nạ chống ẩm.
+
+---
+
+**2.  Tính toán ngân sách/ngày**  
+Bạn có **3 triệu đồng** cho **2 ngày** => **1.5 triệu đồng/đêm**.  
+Một ngân sách tiêu phí phổ biến (đối với người đi du lịch ngân sách, một người):
+
+| Hạng mục | 1.5 triệu đồng/dưới | Tỷ lệ phần trăm |
+|-----------|---------------------|-----------------|
+| **Chỗ ở** (hostel/khách sạn 3 sao, phòng dạng “budget”) | 300 k – 500 k | 20–35% |
+| **Ăn uống** (gì ăn nhanh hoặc địa điểm giá rẻ) | 400 k – 600 k | 25–40% |
+| **Di chuyển** (táo, xe buýt, dịch vụ taxi hoặc Grab) | 200 k – 300 k | 13–20% |
+| **Phiền phức & B chưa cần thiết** (điểm tham quan, vé, quà lưu niệm) | 200 k – 300 k | 13–20% |
+| **Dự phòng** (nếu cần) | 200 k – 300 k | 13–20% |
+
+> **Tóm tắt:** 1.5 triệu đồng/ngày đủ để:
+> - Nghỉ lại tại khách sạn/hostel giá bình dân (300–500 k).
+> - Kết hợp 2 bữa ăn nhanh công thức (200–300 k) + 1 bữa ăn chính (200–300 k).
+> - Giao dịch di chuyển nội thành (30–50 km) bằng Grab/xe buýt (300–400 k).
+> - Dự phòng để kể và trả tiền dịch vụ thêm (300 k).
+
+---
+
+**3.  Kết luận: Nơi an toàn tài chính hơn?**  
+- **Chi phí thực tế** ở cả Hanoi và Saigon gần như tương đương. Tuy nhiên, khi cân nhắc **địa điểm**, **Sài Gòn** có khớp lạc ưu điểm:
+  + Mức giá tự nhiên của các dịch vụ ăn uống, Vé, mua sắm ở Saigon thường thấp hơn một chút (khoảng 5‑10% ưu thế).
+  + Nếu bạn mê mệt di chuyển chung, khuyến cáo là **Grab** hoặc taxi cho Saigon có giá cước điều chỉnh nhanh, qua đêm đáng cân nhắc.  
+- **Hà Nội** có giá năng động tại gió ẩm thị thông nhưng tiềm năng **không lỗ**: chi phí phòng tại quay Lý, Sở họ, Ven, F&B khởi 299k.
+
+> **Kết luận nhanh:** Ở ngân sách 3 m, 2 ngày, **Sài Gòn** nhẹ nhàng hơn một chút về chi phí, đặc biệt nếu bạn muốn tránh bù lượng nhiệt độ cao và sắp xếp những hoạt động di chuyển ngắn. Nếu bạn có thể dễ dàng tắt bộ điều khiển phù hợp (độ ẩm cao, chu kì mưa) thì **Hà Nội** đủ khả thi và không tốn kém.
+
+**Mẹo nhanh:**  
+- Mua vé máy bay hoặc xe cao tốc trước trên **Google Flights** / **Trang Viễn Phong** để đạt giá rẻ nhất.  
+- Đặt phòng qua **Booking.com** hoặc **Airbnb** — thống kê đang giảm giá 10‑15% vào cuối tuần.  
+- Sử dụng **GrabPay** để thanh toán hiện đại, khai báo bốc son nho.  
+
+Hy vọng thông tin giúp bạn ra quyết định một cách nhanh chóng và tiết kiệm. Chúc chuyến đi 2 ngày suôn sẻ!
+Provider: openai
+Latency (ms): 9505
+Tokens: 1821
+======================================================================
+
+[TEST 4] User: Với 10 triệu cho 6 ngày, tôi muốn chọn giữa Đà Nẵng và Hà Nội. Đưa ra khuyến nghị cuối cùng.
+----------------------------------------------------------------------
+HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+Chatbot: **Khuyến nghị cuối cùng: Chọn Hà Nội với 10 triệu đồng (≈ $410) cho 6 ngày**
+
+| Điều kiện | Đà Nẵng | Hà Nội |
+|-----------|---------|--------|
+| **Chi phí ngủ** (3–4* phòng) | 60–120k đ/đêm | 60–100k đ/đêm |
+| **Chi phí ăn** (3 bữa) | 25–40k đ/ngày | 15–30k đ/ngày |
+| **Di chuyển nội thành** | Chuyến taxi 30–40k đ/ngày | Ô 3‑4k đ/máy, taxi 30k đ/ngày |
+| **Hoạt động (đến ngay)** | Vé Biển Hàn, Tháp Chắng, ống sông 25k đ | Lăng Chủ tịch, Chùa Trấn Quốc, Phố cổ 20k đ |
+| **Hoạt động (đi xe)** | Xe đạp/taxi tới biển 80k đ | Xe dolly/taxi tới bãi xã 60k đ |
+| **Tổng chi phí 6 ngày** | ≈ 8–9.5 triệu đ | ≈ 7.5–8.5 triệu đ |
+
+**Lý do chọn Hà Nội**
+
+1. **Chi phí thấp hơn:** Giá nhà trọ, ăn uống và di chuyển nhẹ hơn hơn Đà Nẵng, giúp bạn giữ lại tiền cho các hoạt động.
+2. **Phố cổ & di tích lịch sử:** Có nhiều điểm tham quan miễn phí hoặc giá rẻ (Lăng Trường Chinh, Thánh đức Giảng, Chùa Trấn Quốc).
+3. **Dịch vụ & lưu trú phong phú:** Từ khách sạn 3 sao đến homestay có kết nối Wi‑Fi, dễ dàng tìm chỗ phù hợp với ngân sách.
+4. **Khí hậu dễ chịu (nếu đi từ 3–4 tháng GA):** Không cần lo lắng về lưu hành nắng/đá như mùa hè Đà Nẵng.
+
+**Mẹo kinh tế**
+
+- Mua thẻ “Hanoi Tourist Card” (30k đ) để được giảm giá/miễn phí vào các bảo tàng lớn.
+- Đặt phòng qua Booking, Agoda hoặc homestay local (mức trùm tịp 70-100k đ/night) để tiết kiệm.
+- Sử dụng dịch vụ “Grab” hoặc “Vinasun” thay vì taxi bình thường; giá thường rẻ hơn 10–15k đ.
+
+**Tóm lại**: Với ngân sách 10 triệu đồng cho 6 ngày, **Hà Nội** cho phép bạn trải nghiệm văn hoá, lịch sử và duy trì chi phí dưới mức trung bình. Nếu bạn ưu tiên cảnh biển và các hoạt động ngoài trời, giá chênh lệch với Đà Nẵng vẫn vẫn nằm trong giới hạn công thức 10 triệu; nhưng Hà Nội sẽ là lựa chọn an toàn hơn về chi phí.
+Provider: openai
+Latency (ms): 6382
+Tokens: 1237
+======================================================================
+
+[TEST 5] User: Tôi cần một câu trả lời có số liệu: Việt Nam có dân số bao nhiêu, và diện tích là bao nhiêu?
+----------------------------------------------------------------------
+HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+Chatbot: - Dân số: khoảng 98 million người (ước tính năm 2023, World Bank).  
+- Diện tích: 331 210 km².
+Provider: openai
+Latency (ms): 611
+Tokens: 252
+======================================================================

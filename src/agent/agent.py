@@ -12,12 +12,26 @@ class ReActAgent:
     Students should implement the core loop logic and tool execution.
     """
     
-    def __init__(self, llm: LLMProvider, tools: List[Dict[str, Any]], max_steps: int = 5, step_delay_seconds: float = 0.0):
+    def __init__(self, llm: LLMProvider, tools: List[Dict[str, Any]], max_steps: int = 5, step_delay_seconds: float = 0.0, system_prompt_path: Optional[str] = None):
         self.llm = llm
         self.tools = tools
         self.max_steps = max_steps
         self.step_delay_seconds = max(step_delay_seconds, 0.0)
         self.history = []
+        self.system_prompt_path = system_prompt_path
+        self._loaded_prompt = None
+        
+        if self.system_prompt_path:
+            self._loaded_prompt = self._load_prompt_from_file(self.system_prompt_path)
+
+    def _load_prompt_from_file(self, path: str) -> str:
+        """Đọc system prompt từ file"""
+        try:
+            with open(path, "r", encoding="utf-8") as f:
+                return f.read()
+        except Exception as e:
+            logger.log_event("PROMPT_LOAD_ERROR", {"path": path, "error": str(e)})
+            return ""
 
     def get_system_prompt(self) -> str:
         """Tạo system prompt với danh sách tools"""
@@ -26,6 +40,12 @@ class ReActAgent:
             for t in self.tools
         ])
         
+        # print(self._loaded_prompt)
+        if self._loaded_prompt:
+            # Nếu có prompt từ file, sử dụng format để truyền tools
+            return self._loaded_prompt.format(tool_descriptions=tool_descriptions)
+        
+        # Default prompt nếu không có file
         return f"""Bạn là AI Agent tư vấn du lịch thông minh, có khả năng sử dụng tools để đưa ra quyết định chính xác.
 
             TOOLS AVAILABLE:
